@@ -38,7 +38,7 @@
         return gk_fileData[filename] || "";
         }
         </script><!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,83 +48,89 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: #fff;
-            direction: rtl;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #4a6cd4, #8e44ad);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        h1 {
-            font-size: 2em;
-            margin: 0;
+            background: linear-gradient(135deg, #6b7280, #1e3a8a);
+            color: #ffffff;
+            line-height: 1.6;
         }
         .container {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
+            margin: 0 auto;
+            padding: 2rem;
             text-align: center;
         }
-        .dashboard {
-            width: 100%;
-            height: 600px;
-            margin-top: 20px;
+        header {
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin: 0;
         }
         p {
-            font-size: 1.2em;
-            line-height: 1.6;
+            font-size: 1.1rem;
             max-width: 800px;
-            margin: 20px auto;
+            margin: 1rem auto;
         }
-        .back-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1em;
-            color: #fff;
-            background: linear-gradient(45deg, #3498db, #9b59b6);
+        .tableau-container {
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-back {
+            background: linear-gradient(135deg, #60a5fa, #2563eb);
+            color: white;
+            padding: 0.8rem 1.5rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 8px;
+            font-size: 1rem;
             cursor: pointer;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+            display: inline-block;
         }
-        .back-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         @media (max-width: 768px) {
-            .dashboard {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .tableau-container {
                 height: 400px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>דשבורד תפעולי</h1>
-    </header>
     <div class="container">
-        <p>הדשבורד התפעולי מתמקד בניהול יומיומי של הסטודיו, כולל נתונים על נוכחות, שימוש בציוד ותחזוקת מתקנים.</p>
-        <div class="dashboard">
+        <header>
+            <h1>דשבורד תפעולי</h1>
+            <p>דשבורד זה מתמקד בתפעול השוטף של הסטודיואים, כולל ניהול לוחות זמנים, תחזוקת ציוד וניתוח יעילות תפעולית ברשת YogaFlow.</p>
+        </header>
+        <div class="tableau-container">
             <div id='tableauViz'></div>
+            <script src='https://public.tableau.com/javascripts/api/tableau-2.min.js'></script>
+            <script>
+                function initViz() {
+                    const vizUrl = 'https://public.tableau.com/views/dashboard3_17527927435620/sheet11?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link';
+                    const vizContainer = document.getElementById('tableauViz');
+                    const options = {
+                        width: '100%',
+                        height: '600px',
+                        hideTabs: true,
+                        hideToolbar: true,
+                    };
+                    let viz = new tableau.Viz(vizContainer, vizUrl, options);
+                }
+                document.addEventListener('DOMContentLoaded', initViz);
+            </script>
         </div>
-        <a href="index.html" class="back-btn">חזור לדף הראשי</a>
+        <button class="btn-back" onclick="window.location.href='index.html'">חזור לדף הראשי</button>
     </div>
-    <script src='https://public.tableau.com/javascripts/api/viz_v1.js'></script>
-    <script>
-        const vizUrl = 'https://public.tableau.com/views/dashboard3_17527927435620/sheet11?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link';
-        const vizContainer = document.getElementById('tableauViz');
-        const vizOptions = {
-            hideTabs: true,
-            hideToolbar: true,
-            width: '100%',
-            height: '600px'
-        };
-        const viz = new tableau.Viz(vizContainer, vizUrl, vizOptions);
-    </script>
 </body>
 </html>
